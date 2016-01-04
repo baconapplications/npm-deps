@@ -10,6 +10,12 @@ control systems, which conflict with auto-generated files. Base package
 attributes, like name and version, can be stored in a separate file such as
 `package-base.json`, and kept in version control.
 
+### BaconApplications fork notes
+
+* Changed code to use indexOf('node_modules') to ignore any directory with node_modules in the path.
+
+* added a -i, --ignore [comma list] option to pass in a list of directories to ignore via indexOf - eg bower_components
+
 ## Example
 
     $ cd my_cool_project

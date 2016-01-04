@@ -8,6 +8,10 @@ function analyze(options, callback) {
   var result = {};
   var done = false;
   var pending = 0;
+  var skipDirs = [];
+  if(options.ignore){
+      skipDirs = options.ignore.split(',');
+  }
 
   // Iterate through all directories
   dive(cwd, { directories: true, files: false }, eachDir, whenDone);
@@ -16,14 +20,24 @@ function analyze(options, callback) {
     if (err) return;
 
     var rel = path.relative(cwd, dir);
-
+    
     // don't process any `node_modules` directories
-    var nodeModules = 'node_modules';
-    if (nodeModules === rel.substring(0, nodeModules.length)) {
+    if (dir.indexOf('node_modules') > -1) {
       log.verbose('analyze', 'skipping `node_modules` directory: %s', dir);
       return;
     }
-
+    
+    var skip = false;
+    skipDirs.forEach(function(skipDir){
+       if(dir.indexOf(skipDir) > -1){
+            log.verbose('analyze', 'skipping `%s` directory: %s', skipDir, dir);
+            skip = true;
+       }
+    });
+    if(skip){
+        return;
+    }        
+        
     // Check for existence of package.json and read it
     var pkgjson = path.join(dir, 'package.json');
     pending++;
