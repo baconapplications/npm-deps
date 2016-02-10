@@ -14,6 +14,8 @@ attributes, like name and version, can be stored in a separate file such as
 
 * Changed code to use indexOf('node_modules') to ignore any directory with node_modules in the path.
 
+* added a -d, --startDir [path] option to pass in the starting directory to parse via relative - eg -d ../../../
+
 * added a -i, --ignore [comma list] option to pass in a list of directories to ignore via indexOf - eg bower_components
 
 ## Example

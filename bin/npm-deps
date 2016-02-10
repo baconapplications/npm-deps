@@ -8,6 +8,7 @@ app
   .version(require('../package.json').version)
   .option('-s, --silent', 'do not print out warnings')
   .option('-o, --output [file]', 'output to a file')
+  .option('-d, --startDir [path]', 'set the start path')
   .option('-i, --ignore [comma list]', 'comma list directory names to ignore (match via indexOf)')
   .parse(process.argv);
 

@@ -5,6 +5,10 @@ var log = require('./log');
 
 function analyze(options, callback) {
   var cwd = process.cwd();
+  var theDir = cwd;
+  if(options.startDir){
+    theDir = path.join(cwd, options.startDir);
+  }
   var result = {};
   var done = false;
   var pending = 0;
