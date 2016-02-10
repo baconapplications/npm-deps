@@ -18,12 +18,12 @@ function analyze(options, callback) {
   }
 
   // Iterate through all directories
-  dive(cwd, { directories: true, files: false }, eachDir, whenDone);
+  dive(theDir, { directories: true, files: false }, eachDir, whenDone);
 
   function eachDir(err, dir) {
     if (err) return;
 
-    var rel = path.relative(cwd, dir);
+    var rel = path.relative(theDir, dir);
     
     // don't process any `node_modules` directories
     if (dir.indexOf('node_modules') > -1) {
