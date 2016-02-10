@@ -12,4 +12,4 @@ app
   .option('-i, --ignore [comma list]', 'comma list directory names to ignore (match via indexOf)')
   .parse(process.argv);
 
-analyze({ silent: app.silent, ignore: app.ignore }, output(app));
+analyze({ silent: app.silent, ignore: app.ignore, startDir: app.startDir }, output(app));
